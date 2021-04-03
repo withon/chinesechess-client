@@ -8,10 +8,10 @@ public class Xiang : Piece
     {
         List<Vector2Int> locations = new List<Vector2Int>
         {
-            new Vector2Int(gridPoint.x + 2, gridPoint.y + 2),
-            new Vector2Int(gridPoint.x + 2, gridPoint.y - 2),
-            new Vector2Int(gridPoint.x - 2, gridPoint.y + 2),
-            new Vector2Int(gridPoint.x - 2, gridPoint.y - 2)
+            Geometry.GridPoint(gridPoint.x + 2, gridPoint.y + 2),
+            Geometry.GridPoint(gridPoint.x + 2, gridPoint.y - 2),
+            Geometry.GridPoint(gridPoint.x - 2, gridPoint.y + 2),
+            Geometry.GridPoint(gridPoint.x - 2, gridPoint.y - 2)
         };
 
         if (ChessManager.instance.currentPlayer.forward == 1)
@@ -23,7 +23,7 @@ public class Xiang : Piece
             locations.RemoveAll(gp => gp.y < 5);
         }
 
-        locations.RemoveAll(gp => ChessManager.instance.PieceAtGrid(new Vector2Int((gp.x + gridPoint.x) / 2, (gp.y + gridPoint.y) / 2)));
+        locations.RemoveAll(gp => ChessManager.instance.PieceAtGrid(Geometry.GridPoint((gp.x + gridPoint.x) / 2, (gp.y + gridPoint.y) / 2)));
 
 
         return locations;

@@ -12,7 +12,7 @@ public class Che : Piece
         {
             for (int i = 1; i < 10; i++)
             {
-                Vector2Int nextGridPoint = new Vector2Int(gridPoint.x + i * dir.x, gridPoint.y + i * dir.y);
+                Vector2Int nextGridPoint = Geometry.GridPoint(gridPoint.x + i * dir.x, gridPoint.y + i * dir.y);
                 locations.Add(nextGridPoint);
                 if (ChessManager.instance.PieceAtGrid(nextGridPoint))
                 {

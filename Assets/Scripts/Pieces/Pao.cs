@@ -12,12 +12,12 @@ public class Pao : Piece
         {
             for (int i = 1; i < 10; i++)
             {
-                Vector2Int nextGridPoint = new Vector2Int(gridPoint.x + i * dir.x, gridPoint.y + i * dir.y);
+                Vector2Int nextGridPoint = Geometry.GridPoint(gridPoint.x + i * dir.x, gridPoint.y + i * dir.y);
                 if (ChessManager.instance.PieceAtGrid(nextGridPoint))
                 {
                     for (int j = i + 1; j < 10; j++)
                     {
-                        Vector2Int endGridPoint = new Vector2Int(gridPoint.x + j * dir.x, gridPoint.y + j * dir.y);
+                        Vector2Int endGridPoint = Geometry.GridPoint(gridPoint.x + j * dir.x, gridPoint.y + j * dir.y);
                         if (ChessManager.instance.PieceAtGrid(endGridPoint))
                         {
                             locations.Add(nextGridPoint);
