@@ -128,7 +128,7 @@ public class ChessManager : MonoBehaviour
 
     public GameObject PieceAtGrid(Vector2Int gridPoint)
     {
-        if (gridPoint.x > 7 || gridPoint.y > 7 || gridPoint.x < 0 || gridPoint.y < 0)
+        if (gridPoint.x > 8 || gridPoint.y > 9 || gridPoint.x < 0 || gridPoint.y < 0)
         {
             return null;
         }
@@ -157,5 +157,43 @@ public class ChessManager : MonoBehaviour
         Player tempPlayer = currentPlayer;
         currentPlayer = otherPlayer;
         otherPlayer = tempPlayer;
+    }
+
+    public void SelectPiece(GameObject piece)
+    {
+        board.SelectPiece(piece);
+        List<Vector2Int> locations = MovesForPiece(piece);
+        foreach (Vector2Int location in locations)
+        {
+            board.AddDot(location);
+        }
+    }
+
+    public void DeselectPiece(GameObject piece)
+    {
+        board.DeselectPiece(piece);
+        board.DeleteDots();
+    }
+
+    public void Move(GameObject piece, Vector2Int gridPoint)
+    {
+        Vector2Int startGridPoint = GridForPiece(piece);
+        pieces[startGridPoint.x, startGridPoint.y] = null;
+        pieces[gridPoint.x, gridPoint.y] = piece;
+        board.MovePiece(piece, gridPoint);
+        DeselectPiece(piece);
+        NextPlayer();
+    }
+
+    public void CapturePieceAt(Vector2Int gridPoint)
+    {
+        GameObject pieceToCapture = PieceAtGrid(gridPoint);
+        if (pieceToCapture.GetComponent<Piece>().type == PieceType.Jiang)
+        {
+            Debug.Log(currentPlayer.name + " wins!");
+        }
+        //currentPlayer.capturedPieces.Add(pieceToCapture);
+        pieces[gridPoint.x, gridPoint.y] = null;
+        Destroy(pieceToCapture);
     }
 }

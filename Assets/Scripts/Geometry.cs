@@ -21,8 +21,8 @@ public class Geometry
 
     static public Vector2Int GridFromPoint(Vector2 point)
     {
-        int col = Mathf.FloorToInt(point.x / scaleFactor + 0.5f);
-        int row = Mathf.FloorToInt(point.y / scaleFactor + 0.5f);
+        int col = Mathf.FloorToInt((point.x - xFactor) / scaleFactor + 0.5f);
+        int row = Mathf.FloorToInt((point.y - yFactor) / scaleFactor + 0.5f);
         return new Vector2Int(col, row);
     }
 }

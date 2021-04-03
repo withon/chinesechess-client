@@ -6,9 +6,9 @@ public class Board : MonoBehaviour
 {
     public GameObject r_box_current;
     public GameObject r_box_last;
-    public GameObject dot;
+    public GameObject redDot;
 
-
+    public List<GameObject> dots;
 
     public GameObject AddPiece(GameObject piece, int col, int row)
     {
@@ -30,6 +30,23 @@ public class Board : MonoBehaviour
     public void SelectPiece(GameObject piece)
     {
         piece.GetComponent<Renderer>().material.color = new Color(1, 1, 1, 0.7f); 
+    }
+
+    public GameObject AddDot(Vector2Int gridPoint)
+    {
+        GameObject addedDot = Instantiate(redDot, Geometry.PointFromGrid(gridPoint), Quaternion.identity, gameObject.transform);
+        dots.Add(addedDot);
+        return addedDot;
+    }
+
+    public void DeleteDots()
+    {
+        Debug.Log("Del: " + dots);
+        foreach (GameObject dot in dots)
+        {
+            Destroy(dot);
+        }
+        dots.Clear();
     }
 
     public void DeselectPiece(GameObject piece)

@@ -20,7 +20,7 @@ public class Pao : Piece
                         Vector2Int endGridPoint = Geometry.GridPoint(gridPoint.x + j * dir.x, gridPoint.y + j * dir.y);
                         if (ChessManager.instance.PieceAtGrid(endGridPoint))
                         {
-                            locations.Add(nextGridPoint);
+                            locations.Add(endGridPoint);
                             break;
                         }
                     }
