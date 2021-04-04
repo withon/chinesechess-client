@@ -41,7 +41,6 @@ public class Board : MonoBehaviour
 
     public void DeleteDots()
     {
-        Debug.Log("Del: " + dots);
         foreach (GameObject dot in dots)
         {
             Destroy(dot);

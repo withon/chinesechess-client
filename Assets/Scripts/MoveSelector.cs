@@ -44,7 +44,6 @@ public class MoveSelector : MonoBehaviour
             {
                 Vector2Int gridPoint = Geometry.GridFromPoint(hit.point);
                 selectedPiece = mshSp.process(gridPoint, selectedPiece);
-                Debug.Log(gridPoint);
             }
         }
     }
@@ -105,7 +104,7 @@ class ReselectPiece : MoveSelectorHandler
         }
         else
         {
-            return selectedPiece;
+            return nextHandler.process(gridPoint, selectedPiece);
         }
     }
 }
