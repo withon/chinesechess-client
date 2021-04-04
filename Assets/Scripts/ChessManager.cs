@@ -180,6 +180,7 @@ public class ChessManager : MonoBehaviour
         Vector2Int startGridPoint = GridForPiece(piece);
         pieces[startGridPoint.x, startGridPoint.y] = null;
         pieces[gridPoint.x, gridPoint.y] = piece;
+        board.MoveRedBox(startGridPoint, gridPoint);
         board.MovePiece(piece, gridPoint);
         DeselectPiece(piece);
         NextPlayer();

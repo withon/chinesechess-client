@@ -27,6 +27,14 @@ public class Board : MonoBehaviour
         piece.transform.position = Geometry.PointFromGrid(gridPoint);
     }
 
+    public void MoveRedBox(Vector2Int lastGridPoint, Vector2Int currentGridPoint)
+    {
+        r_box_last.transform.position = Geometry.PointFromGrid(lastGridPoint);
+        r_box_current.transform.position = Geometry.PointFromGrid(currentGridPoint);
+        r_box_last.GetComponent<Renderer>().enabled = true;
+        r_box_current.GetComponent<Renderer>().enabled = true;
+    }
+
     public void SelectPiece(GameObject piece)
     {
         piece.GetComponent<Renderer>().material.color = new Color(1, 1, 1, 0.7f); 
